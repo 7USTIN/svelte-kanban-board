@@ -1,4 +1,5 @@
 <script lang="ts">
+    import GroupHeader from "./GroupHeader.svelte"
     import Item from "./Item.svelte"
 
     export let focusInput: boolean
@@ -6,20 +7,10 @@
     export let groups: any[]
     export let name: string
     export let items: any[]
-
-    const focusEl = node => {
-        if(focusInput && iGroups + 1 === groups.length) {
-            node.focus()
-        }
-    }
 </script>
 
 <div class="group-wrapper">
-    <div class="group-header">
-        <button class="name-wrapper">
-            <div contenteditable="true" placeholder="New Group" bind:innerHTML={name} use:focusEl spellcheck="false" />
-        </button>
-    </div>
+    <GroupHeader bind:groups bind:focusInput {name} {iGroups} />
 </div>
 
 <style lang="scss">
@@ -27,55 +18,5 @@
         padding-right: 16px;
         width: 260px;
         box-sizing: content-box;
-
-        .group-header {
-            display: flex;
-            align-items: center;
-            width: 260px;
-            height: 28px;
-
-            .name-wrapper {
-                user-select: none;
-                cursor: pointer;
-                overflow: hidden;
-                padding: 4px;
-                border-radius: 3px;
-                width: fit-content;
-                border: none;
-                background: none;
-
-                &:hover {
-                    background: rgba(55, 53, 47, 0.1);
-                }
-
-                &:focus-within:hover {
-                    background: none;
-                    cursor: text;
-                }
-
-                div {
-                    border-radius: 3px;
-                    padding: 1px 6px;
-                    font-size: 14px;
-                    color: rgb(55, 53, 47);
-                    background: hsl(150, 50%, 85%);
-                    text-align: left;
-                    line-height: 120%;
-
-                    &:empty::before {
-                        content: attr(placeholder);
-                        color: rgba(55, 53, 47, 0.4);
-                    }
-
-                    &:focus {
-                        background: transparent;
-                        padding: 6px 7px;
-                        width: 150px;
-                        box-shadow: rgba(15, 15, 15, 0.1) 0 0 0 1px inset;
-                        background: rgba(242, 241, 238, 0.4)
-                    }
-                }
-            }
-        }
     }
 </style>

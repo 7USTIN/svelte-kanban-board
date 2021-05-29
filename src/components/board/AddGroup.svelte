@@ -6,7 +6,7 @@
     const dispatch = createEventDispatcher()
 
     const addGroup = () => {
-        groups = [...groups, {name: `Group ${groups.length}`, items: []}]
+        groups = [...groups, {name: `Group ${groups.length + 1}`, items: []}]
         dispatch("addedGroup")
     }
 </script>
