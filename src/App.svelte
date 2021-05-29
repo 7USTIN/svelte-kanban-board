@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Header from "./components/Header.svelte"
+	import Board from "./components/board/Board.svelte"
 </script>
 
 <main>
 	<Header />
+	<Board />
 </main>
 
 <style lang="scss">
