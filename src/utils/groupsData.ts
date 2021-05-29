@@ -10,7 +10,7 @@ export const groupsData = [
         ]
     },
     {
-        name: "Group 1",
+        name: "Group 2",
         items: [
             { id: 6, title: "Item 6", text: "Text 6"},
             { id: 7, title: "Item 7", text: "Text 7"},
@@ -22,7 +22,7 @@ export const groupsData = [
         ]
     },
     {
-        name: "Group 1",
+        name: "Group 3",
         items: [
             { id: 13, title: "Item 13", text: "Text 13"},
             { id: 14, title: "Item 14", text: "Text 14"},
