@@ -7,26 +7,28 @@
 </svelte:head>
 
 <header>
-    <input 
-        type="text" 
-        aria-label={title ? title : "Untitled"} 
+    <div 
+        contenteditable="true" 
         placeholder="Untitled" 
-        bind:value={title} 
-        autocomplete="false"
+        bind:innerHTML={title} 
         spellcheck="false"
     />
 </header>
 
 <style lang="scss">
     header {
-        input {
+        margin-bottom: 32px;
+
+        div {
             caret-color: rgb(55, 53, 47);
             border: none;
             font-size: 40px;
             font-weight: 700;
             line-height: 1.2;
+            word-break: break-all;
 
-            &::placeholder {
+            &:empty::before {
+                content: attr(placeholder);
                 color: rgba(55, 53, 47, 0.25);
             }
         }

@@ -7,7 +7,7 @@
     export let name: string
     export let items: any[]
 
-    const focusEl = (node: HTMLInputElement) => {
+    const focusEl = node => {
         if(focusInput && iGroups + 1 === groups.length) {
             node.focus()
         }
@@ -15,15 +15,11 @@
 </script>
 
 <div class="group-wrapper">
-    <input
-        type="text" 
-        aria-label={name ? name : `Group ${iGroups + 1}`} 
-        placeholder={`Group ${iGroups + 1}`}
-        bind:value={name} 
-        use:focusEl
-        autocomplete="false"
-        spellcheck="false"
-    />
+    <div class="group-header">
+        <button class="name-wrapper">
+            <div contenteditable="true" placeholder="New Group" bind:innerHTML={name} use:focusEl spellcheck="false" />
+        </button>
+    </div>
 </div>
 
 <style lang="scss">
@@ -32,18 +28,54 @@
         width: 260px;
         box-sizing: content-box;
 
-        input {
-            user-select: none;
-            border: none;
-            background: none;
-            cursor: pointer;
-            padding: 3px;
-            border-radius: 3px;
-            height: 24px;
-            font-size: 14px;
-            padding-left: 8px;
-            padding-right: 8px;
-            font-weight: 500;
+        .group-header {
+            display: flex;
+            align-items: center;
+            width: 260px;
+            height: 28px;
+
+            .name-wrapper {
+                user-select: none;
+                cursor: pointer;
+                overflow: hidden;
+                padding: 4px;
+                border-radius: 3px;
+                width: fit-content;
+                border: none;
+                background: none;
+
+                &:hover {
+                    background: rgba(55, 53, 47, 0.1);
+                }
+
+                &:focus-within:hover {
+                    background: none;
+                    cursor: text;
+                }
+
+                div {
+                    border-radius: 3px;
+                    padding: 1px 6px;
+                    font-size: 14px;
+                    color: rgb(55, 53, 47);
+                    background: hsl(150, 50%, 85%);
+                    text-align: left;
+                    line-height: 120%;
+
+                    &:empty::before {
+                        content: attr(placeholder);
+                        color: rgba(55, 53, 47, 0.4);
+                    }
+
+                    &:focus {
+                        background: transparent;
+                        padding: 6px 7px;
+                        width: 150px;
+                        box-shadow: rgba(15, 15, 15, 0.1) 0 0 0 1px inset;
+                        background: rgba(242, 241, 238, 0.4)
+                    }
+                }
+            }
         }
     }
 </style>

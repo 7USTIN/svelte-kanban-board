@@ -28,14 +28,6 @@
 		color: rgb(55, 53, 47);
 	}
 
-	:global(input) {
-		font-family: "Open Sans", sans-serif;
-		color: rgb(55, 53, 47);
-		white-space: pre-wrap;
-		word-break: break-word;
-		text-overflow: ellipsis;
-	}
-
 	main {
 		padding: 100px 150px;
 	}
