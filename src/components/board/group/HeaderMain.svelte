@@ -1,10 +1,9 @@
 <script lang="ts">
-    import { randomColor } from "../../../utils/colors" 
-
     export let groups: any[]
     export let name: string
     export let iGroups: number
     export let focusInput: boolean
+    export let groupColor: string
 
     const focusEl = node => {
         if(focusInput && iGroups + 1 === groups.length) {
@@ -17,7 +16,7 @@
 <button class="name-wrapper">
     <div 
         on:click={() => document.execCommand('selectAll', false, null)}
-        style={`background: #${randomColor()};`} 
+        style={`background: #${groupColor};`} 
         contenteditable="true" 
         placeholder="New Group" 
         bind:innerHTML={name} 

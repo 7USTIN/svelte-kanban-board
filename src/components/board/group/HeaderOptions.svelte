@@ -5,12 +5,14 @@
 
     export let groups: any[]
     export let iGroups: number
+    export let groupColor: string
 
     let showMenu = false
 
     const deleteGroup = () => {
         groups.splice(iGroups, 1)
         groups = groups
+        showMenu = false
     }
 </script>
 
@@ -28,7 +30,7 @@
                 
                 <div class="sub-header">Colors</div>
                 {#each colors as {name, hex}}
-                    <p>
+                    <p on:click={() => { groupColor = hex; showMenu = false }}>
                         <span class="color" style={`background: #${hex};`}>
                             <span class="border" style={`border: 1px solid #${hex};`}/> 
                         </span> 
@@ -147,7 +149,7 @@
                     width: 18px;
                     height: 18px;
                     background: transparent;
-                    filter: brightness(82.5%);
+                    filter: brightness(80%);
                     z-index: 600;
                 }
                 }
