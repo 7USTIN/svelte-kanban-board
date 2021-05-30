@@ -26,9 +26,13 @@
 		background: white;
 		font-family: "Open Sans", sans-serif;
 		color: rgb(55, 53, 47);
+		padding: 100px 0;
 	}
 
 	main {
-		padding: 100px 150px;
+		margin: auto;
+		padding: 0 5vw;
+		width: fit-content;
+		min-width: 95vw;
 	}
 </style>

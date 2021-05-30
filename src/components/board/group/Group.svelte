@@ -1,6 +1,7 @@
 <script lang="ts">
-    import GroupHeader from "./GroupHeader.svelte"
-    import Item from "./Item.svelte"
+    import Header from "./Header.svelte"
+    import AddItem from "./AddItem.svelte"
+    import Item from "../Item.svelte"
 
     export let focusInput: boolean
     export let iGroups: number
@@ -10,7 +11,13 @@
 </script>
 
 <div class="group-wrapper">
-    <GroupHeader bind:groups bind:focusInput {name} {iGroups} />
+    <Header bind:groups bind:focusInput {name} {iGroups} />
+
+    {#each items as {id, title, text}, iItem (iItem)}
+        <Item bind:title bind:text bind:groups {iGroups} {id} />
+    {/each}
+    
+    <AddItem bind:groups {iGroups}/>
 </div>
 
 <style lang="scss">

@@ -29,3 +29,10 @@ export const groupsData = [
         ]
     },
 ] 
+
+export const addItem = (arr: any, index) => {
+    return arr[index].items = [
+        ...arr[index].items, 
+        {id: 69, title: "d", text: ""}
+    ]
+}
