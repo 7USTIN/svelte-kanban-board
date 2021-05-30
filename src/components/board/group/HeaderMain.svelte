@@ -26,7 +26,7 @@
     />
 </button>
 <div class="item-counter">
-    {groups[iGroups].items.length}
+    {groups[iGroups] ? groups[iGroups].items.length : "0"}
 </div>
 
 <style lang="scss">

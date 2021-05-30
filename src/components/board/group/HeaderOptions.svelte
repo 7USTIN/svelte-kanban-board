@@ -6,18 +6,21 @@
     export let iGroups: number
 
     let showMenu = false
+
+    const deleteGroup = () => {
+        groups.splice(iGroups, 1)
+        groups = groups
+    }
 </script>
 
 <div class="more-wrapper">
-    <i on:click={e => showMenu = !showMenu} class="options material-icons">more_horiz</i>
+    <i on:click={() => showMenu = !showMenu} class="options material-icons">more_horiz</i>
 
     <div class="more-menu-wrapper">
         {#if showMenu}
             <div class="invisible" on:click={() => showMenu = false}/>
             <div class="more-menu" transition:fade={{ duration: 50 }}>
-                <p>Lorem Impsum</p>
-                <p>Lorem Impsum</p>
-                <p>Lorem Impsum</p>
+                <p on:click={deleteGroup}><i class="material-icons">delete_outline</i>Delete</p>
             </div>
         {/if}
     </div>
@@ -72,7 +75,28 @@
                 border-radius: 3px;
                 display: flex;
                 flex-direction: column;
+                padding: 6px 0;
                 z-index: 500;
+
+                p {
+                    display: flex;
+                    align-items: center;
+                    user-select: none;
+                    min-height: 28px;
+                    font-size: 15px;
+                    width: 100%;
+                    line-height: 120%;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: rgba(55, 53, 47, 0.1)
+                    }
+                }
+
+                i {
+                    font-size: 19px;
+                    margin: 0 3px 0 14px;
+                }
             }
         }
     }
