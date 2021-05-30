@@ -29,7 +29,7 @@
         font-size: 14px;
         padding: 3px 8px 3px 3px;
         color: rgba(55, 53, 47, 0.5);
-        height: fit-content;
+        height: 28px;
 
         i {
             font-size: 22px;

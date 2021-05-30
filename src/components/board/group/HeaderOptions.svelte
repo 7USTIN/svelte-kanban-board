@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { colors } from "../../../utils/colors"
     import { fade } from "svelte/transition" 
     import { addItem } from "../../../utils/groupsData" 
 
@@ -19,11 +20,25 @@
     <div class="more-menu-wrapper">
         {#if showMenu}
             <div class="invisible" on:click={() => showMenu = false}/>
+
             <div class="more-menu" transition:fade={{ duration: 50 }}>
                 <p on:click={deleteGroup}><i class="material-icons">delete_outline</i>Delete</p>
+
+                <div class="hr" />
+                
+                <div class="sub-header">Colors</div>
+                {#each colors as {name, hex}}
+                    <p>
+                        <span class="color" style={`background: #${hex};`}>
+                            <span class="border" style={`border: 1px solid #${hex};`}/> 
+                        </span> 
+                        {name}
+                    </p>
+                {/each}
             </div>
         {/if}
     </div>
+    
 </div>
 
 <div on:click={() => groups[iGroups].items = addItem(groups, iGroups)}>
@@ -78,6 +93,22 @@
                 padding: 6px 0;
                 z-index: 500;
 
+                .hr {
+                    width: 100%;
+                    height: 1px;
+                    background: rgba(55, 53, 47, 0.2);
+                    margin: 9px 0;
+                }
+
+                .sub-header {
+                    color: rgba(55, 53, 47, 0.6);
+                    font-size: 13px;
+                    font-weight: 600;
+                    line-height: 120%;
+                    user-select: none;
+                    padding: 0 0 8px 14px;
+                }
+
                 p {
                     display: flex;
                     align-items: center;
@@ -87,6 +118,7 @@
                     width: 100%;
                     line-height: 120%;
                     cursor: pointer;
+                    text-transform: capitalize;
 
                     &:hover {
                         background: rgba(55, 53, 47, 0.1)
@@ -96,6 +128,28 @@
                 i {
                     font-size: 19px;
                     margin: 0 3px 0 14px;
+                }
+
+                .color {
+                    width: 18px;
+                    height: 18px;
+                    margin: 0 8px 0 14px;
+                    border-radius: 3px;
+                    position: relative;
+
+                .border {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: 3px;
+                    width: 18px;
+                    height: 18px;
+                    background: transparent;
+                    filter: brightness(82.5%);
+                    z-index: 600;
+                }
                 }
             }
         }

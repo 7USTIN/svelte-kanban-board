@@ -1,5 +1,14 @@
 <script lang="ts">
     let title = "Svelte Kanban board"
+
+    const focusEl = node => {
+        const range = document.createRange()
+        const sel = window.getSelection()
+        range.setStart(node.childNodes[0], title.length)
+        sel.removeAllRanges()
+        sel.addRange(range)
+        node.focus()
+    }
 </script>
 
 <svelte:head>
@@ -12,6 +21,7 @@
         placeholder="Untitled" 
         bind:innerHTML={title} 
         spellcheck="false"
+        use:focusEl
     />
 </header>
 

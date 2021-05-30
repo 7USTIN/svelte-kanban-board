@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { randomColor } from "../../../utils/randomColor" 
+    import { randomColor } from "../../../utils/colors" 
 
     export let groups: any[]
     export let name: string
