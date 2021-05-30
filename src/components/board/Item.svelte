@@ -21,7 +21,7 @@
     }
 </script>
 
-<div class="item-wrapper" on:click={() => console.log("d")}>
+<div class="item-wrapper">
     <div 
         class="item-title"
         class:unfocusable
@@ -31,6 +31,9 @@
         placeholder="Untitled"
         spellcheck="false"
     />
+    <div class="more-wrapper">
+        <i class="material-icons more-icon">more_horiz</i>
+    </div>
 </div>
 
 <style lang="scss">
@@ -45,6 +48,17 @@
         user-select: none;
         min-height: 40px;
         cursor: pointer;
+        position: relative;
+        transition: background 20ms ease-out 0s;
+
+        &:hover {
+            background: rgba(55, 53, 47, 0.05);
+        }
+
+        &:hover .more-wrapper {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .item-title {
             white-space: pre-wrap;
@@ -64,6 +78,29 @@
 
         .unfocusable {
             pointer-events: none;
+        }
+
+        .more-wrapper {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            transition: 200ms;
+
+            .more-icon {
+                background: white;
+                border-radius: 3px;
+                box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+                padding: 2px 3px;
+                cursor: pointer;
+                font-size: 20px;
+                color: rgba(55, 53, 47, 0.6);
+
+                &:hover {
+                    background: rgb(239, 239, 238);
+                }
+            }
         }
     }
 </style>

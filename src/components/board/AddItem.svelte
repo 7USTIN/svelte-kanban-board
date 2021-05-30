@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { addItem } from "../../../utils/groupsData"
+    import { addItem } from "../../utils/groupsData"
     import { createEventDispatcher } from "svelte"
 
     export let groups: any[]

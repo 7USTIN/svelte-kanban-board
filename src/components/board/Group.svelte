@@ -1,7 +1,7 @@
 <script lang="ts">
     import Header from "./Header.svelte"
     import AddItem from "./AddItem.svelte"
-    import Item from "../Item.svelte"
+    import Item from "./Item.svelte"
 
     export let focusHeader: boolean
     export let iGroups: number
@@ -13,7 +13,7 @@
 </script>
 
 <div class="group-wrapper">
-    <Header bind:groups bind:focusHeader {name} {iGroups} />
+    <Header bind:groups bind:focusHeader {name} {iGroups} on:addedItem={() => focusItem = true}/>
 
     {#each items as {id, title, text}, iItem (iItem)}
         <Item bind:title bind:text bind:groups bind:focusItem {iGroups} {id} />

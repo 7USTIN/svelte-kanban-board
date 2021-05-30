@@ -1,6 +1,6 @@
 <script lang="ts">
     import { groupsData } from "../../utils/groupsData"
-    import Group from "./group/Group.svelte"
+    import Group from "./Group.svelte"
     import AddGroup from "./AddGroup.svelte"
 
     let groups = groupsData
