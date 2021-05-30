@@ -3,7 +3,7 @@
     import HeaderMain from "./HeaderMain.svelte"
     import HeaderOptions from "./HeaderOptions.svelte"
 
-    export let focusInput: boolean
+    export let focusHeader: boolean
     export let iGroups: number
     export let groups: any[]
     export let name: string
@@ -13,7 +13,7 @@
 
 <div class="group-header">
     <div class="sub-wrapper">
-        <HeaderMain bind:groups bind:name {iGroups} {focusInput} {groupColor} />
+        <HeaderMain bind:groups bind:name {iGroups} {focusHeader} {groupColor} />
     </div>
 
     <div class="sub-wrapper">

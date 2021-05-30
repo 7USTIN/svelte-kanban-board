@@ -49,8 +49,9 @@ const generateId = () => {
 }
 
 export const addItem = (arr: any, index: number) => {
+    window.getSelection().removeAllRanges()
     return arr[index].items = [
         ...arr[index].items, 
-        {id: generateId(), title: `Title ${generateId()}`, text: `Text ${generateId()}`}
+        {id: generateId(), title: "", text: ""}
     ]
 }

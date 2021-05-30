@@ -2,13 +2,14 @@
     export let groups: any[]
     export let name: string
     export let iGroups: number
-    export let focusInput: boolean
+    export let focusHeader: boolean
     export let groupColor: string
 
-    const focusEl = node => {
-        if(focusInput && iGroups + 1 === groups.length) {
+    const focusEl = (node: HTMLElement) => {
+        if(focusHeader && iGroups + 1 === groups.length) {
             node.focus()
             document.execCommand('selectAll', false, null);
+            focusHeader = false
         }
     }
 </script>

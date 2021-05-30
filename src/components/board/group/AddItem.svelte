@@ -1,11 +1,19 @@
 <script lang="ts">
     import { addItem } from "../../../utils/groupsData"
+    import { createEventDispatcher } from "svelte"
 
     export let groups: any[]
     export let iGroups: number
+    
+    const disptach = createEventDispatcher()
+
+    const handleClick = () => {
+        groups[iGroups].items = addItem(groups, iGroups)
+        disptach("addedItem")
+    }
 </script>
 
-<button on:click={() => groups[iGroups].items = addItem(groups, iGroups)}>
+<button on:click={handleClick}>
     <i class="material-icons">add</i> 
     New
 </button>

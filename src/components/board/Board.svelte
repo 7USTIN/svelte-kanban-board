@@ -4,15 +4,15 @@
     import AddGroup from "./AddGroup.svelte"
 
     let groups = groupsData
-    let focusInput = false
+    let focusHeader = false
 </script>
 
 <section>
     {#each groups as {name, items}, iGroups (iGroups)}
-        <Group bind:groups bind:focusInput {name} {items} {iGroups} />
+        <Group bind:groups bind:focusHeader {name} {items} {iGroups} />
     {/each}
 
-    <AddGroup bind:groups on:addedGroup={() => focusInput = true} />
+    <AddGroup bind:groups on:addedGroup={() => focusHeader = true} />
 </section>
 
 <style lang="scss">

@@ -4,13 +4,30 @@
     export let id: number
     export let groups: any[]
     export let iGroups: number
+    export let focusItem: boolean
+
+    let unfocusable = false
+
+    const focusEl = node => {
+        if(focusItem) {
+            node.focus()
+            unfocusable = false
+            focusItem = false
+        }
+
+        if(document.activeElement.className !== "item-title") {
+            unfocusable = true
+        }
+    }
 </script>
 
-<div class="item-wrapper">
+<div class="item-wrapper" on:click={() => console.log("d")}>
     <div 
         class="item-title"
+        class:unfocusable
         contenteditable="true"
         bind:innerHTML={title}
+        use:focusEl
         placeholder="Untitled"
         spellcheck="false"
     />
@@ -41,8 +58,12 @@
 
             &:empty::before {
                 content: attr(placeholder);
-                color: rgba(55, 53, 47, 0.4);
+                color: rgba(55, 53, 47, 0.45);
             }
+        }
+
+        .unfocusable {
+            pointer-events: none;
         }
     }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
     let title = "Svelte Kanban board"
 
-    const focusEl = node => {
+    const focusEl = (node: HTMLElement) => {
         const range = document.createRange()
         const sel = window.getSelection()
         range.setStart(node.childNodes[0], title.length)
