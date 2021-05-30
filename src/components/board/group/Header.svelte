@@ -28,7 +28,7 @@
         justify-content: space-between;
         width: 260px;
         height: 28px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
 
         .sub-wrapper {
             display: flex;
