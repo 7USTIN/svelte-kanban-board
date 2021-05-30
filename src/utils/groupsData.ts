@@ -30,9 +30,27 @@ export const groupsData = [
     },
 ] 
 
-export const addItem = (arr: any, index) => {
+const generateId = () => {
+    let id = 1
+
+    function checkId() {
+        for(let i in groupsData) {
+            for(let j in groupsData[i].items) {
+                if(groupsData[i].items[j].id === id) {
+                    id++
+                    checkId()
+                }
+            }
+        }
+    }
+    checkId()
+
+    return id
+}
+
+export const addItem = (arr: any, index: number) => {
     return arr[index].items = [
         ...arr[index].items, 
-        {id: 69, title: "d", text: ""}
+        {id: generateId(), title: `Title ${generateId()}`, text: `Text ${generateId()}`}
     ]
 }

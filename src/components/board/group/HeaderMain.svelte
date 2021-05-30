@@ -9,13 +9,15 @@
     const focusEl = node => {
         if(focusInput && iGroups + 1 === groups.length) {
             node.focus()
+            document.execCommand('selectAll', false, null);
         }
     }
 </script>
 
 <button class="name-wrapper">
     <div 
-        style={`background: rgb(${randomColor()});`} 
+        on:click={() => document.execCommand('selectAll', false, null)}
+        style={`background: #${randomColor()};`} 
         contenteditable="true" 
         placeholder="New Group" 
         bind:innerHTML={name} 
