@@ -34,7 +34,7 @@
         spellcheck="false"
     />
     <div class="more-wrapper">
-        <ItemOptions />
+        <ItemOptions bind:groups {iGroup} {id} />
     </div>
 </div>
 

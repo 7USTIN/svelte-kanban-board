@@ -1,19 +1,43 @@
 <script lang="ts">
+    export let groups: any[]
+    export let iGroup: number
+    export let id: number
+
     let showMenu = false
+
+    const clickMenu = () => showMenu = !showMenu
+
+    const renameItem = () => {
+
+    }
+
+    const copyItem = () => {
+        let gItems = groups[iGroup].items
+        groups[iGroup].items.splice(gItems.indexOf(gItems.find(item => item.id === id)), 0, gItems.find(item => item.id === id))
+        groups = groups
+        clickMenu()
+    }
+
+    const deleteItem = () => {
+        groups[iGroup].items = groups[iGroup].items.filter(item => item.id !== id)
+        clickMenu()
+    }
 </script>
 
-<i class="material-icons more-icon" on:click={() => showMenu = !showMenu}>
+<svelte:window on:mouseleave={clickMenu}></svelte:window>
+
+<i class="material-icons more-icon" on:click={clickMenu}>
     more_horiz
 </i>
 
 {#if showMenu}
     <div class="more-menu-wrapper">
-        <div class="invisible" on:click={() => showMenu = false}/>
+        <div class="invisible" on:click={clickMenu}/>
 
         <div class="more-menu">
-            Lorem Ipsum
-            Lorem Ipsum
-            Lorem Ipsum
+            <p on:click={renameItem}><i class="material-icons">drive_file_rename_outline</i>Rename</p>
+            <p on:click={copyItem}><i class="material-icons">content_copy</i>Duplicate</p>
+            <p on:click={deleteItem}><i class="material-icons">delete_outline</i>Delete</p>
         </div>
     </div>
 {/if}
@@ -47,7 +71,7 @@
             width: 100vw;
             height: 100vw;
             background: transparent;
-            z-index: 999;
+            z-index: 100;
             cursor: initial;
         }
 
@@ -63,6 +87,28 @@
             flex-direction: column;
             padding: 6px 0;
             z-index: 600;
+
+            p {
+                display: flex;
+                align-items: center;
+                user-select: none;
+                min-height: 28px;
+                font-size: 15px;
+                width: 100%;
+                line-height: 120%;
+                cursor: pointer;
+                text-transform: capitalize;
+
+                &:hover {
+                    background: rgba(55, 53, 47, 0.1)
+                }
+            }
+
+            i {
+                font-size: 19px;
+                margin: 0 8px 0 14px;
+            }
         }
+
     }
 </style>
