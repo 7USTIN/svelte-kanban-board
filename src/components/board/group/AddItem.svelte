@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { addItem } from "../../utils/groupsData"
+    import { addItem } from "../../../utils/groupsData"
     import { createEventDispatcher } from "svelte"
 
     export let groups: any[]
-    export let iGroups: number
+    export let iGroup: number
     
     const disptach = createEventDispatcher()
 
     const handleClick = () => {
-        groups[iGroups].items = addItem(groups, iGroups)
+        groups[iGroup].items = addItem(groups, iGroup)
         disptach("addedItem")
     }
 </script>

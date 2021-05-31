@@ -1,6 +1,6 @@
 <script lang="ts">
     import { groupsData } from "../../utils/groupsData"
-    import Group from "./Group.svelte"
+    import Group from "./group/Group.svelte"
     import AddGroup from "./AddGroup.svelte"
 
     let groups = groupsData
@@ -8,8 +8,8 @@
 </script>
 
 <section>
-    {#each groups as {name, items}, iGroups (iGroups)}
-        <Group bind:groups bind:focusHeader {name} {items} {iGroups} />
+    {#each groups as {name, items}, iGroup (iGroup)}
+        <Group bind:groups bind:focusHeader {name} {items} {iGroup} />
     {/each}
 
     <AddGroup bind:groups on:addedGroup={() => focusHeader = true} />

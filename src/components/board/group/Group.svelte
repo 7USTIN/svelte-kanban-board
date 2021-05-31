@@ -4,7 +4,7 @@
     import Item from "./Item.svelte"
 
     export let focusHeader: boolean
-    export let iGroups: number
+    export let iGroup: number
     export let groups: any[]
     export let name: string
     export let items: any[]
@@ -13,13 +13,13 @@
 </script>
 
 <div class="group-wrapper">
-    <Header bind:groups bind:focusHeader {name} {iGroups} on:addedItem={() => focusItem = true}/>
+    <Header bind:groups bind:focusHeader {name} {iGroup} on:addedItem={() => focusItem = true}/>
 
     {#each items as {id, title, text}, iItem (iItem)}
-        <Item bind:title bind:text bind:groups bind:focusItem {iGroups} {id} />
+        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} />
     {/each}
     
-    <AddItem bind:groups {iGroups} on:addedItem={() => focusItem = true}/>
+    <AddItem bind:groups {iGroup} on:addedItem={() => focusItem = true}/>
 </div>
 
 <style lang="scss">

@@ -1,9 +1,11 @@
 <script lang="ts">
+    import ItemOptions from "./ItemOptions.svelte"
+
     export let title: string
     export let text: string
     export let id: number
     export let groups: any[]
-    export let iGroups: number
+    export let iGroup: number
     export let focusItem: boolean
 
     let unfocusable = false
@@ -32,7 +34,7 @@
         spellcheck="false"
     />
     <div class="more-wrapper">
-        <i class="material-icons more-icon">more_horiz</i>
+        <ItemOptions />
     </div>
 </div>
 
@@ -87,20 +89,6 @@
             top: 8px;
             right: 8px;
             transition: 200ms;
-
-            .more-icon {
-                background: white;
-                border-radius: 3px;
-                box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
-                padding: 2px 3px;
-                cursor: pointer;
-                font-size: 20px;
-                color: rgba(55, 53, 47, 0.6);
-
-                &:hover {
-                    background: rgb(239, 239, 238);
-                }
-            }
         }
     }
 </style>
