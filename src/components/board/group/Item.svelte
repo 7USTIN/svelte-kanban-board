@@ -4,6 +4,7 @@
     export let title: string
     export let text: string
     export let id: number
+    export let iItem: number
     export let groups: any[]
     export let iGroup: number
     export let focusItem: boolean
@@ -12,9 +13,9 @@
 
     const focusEl = node => {
         if(focusItem) {
-            node.focus()
             unfocusable = false
             focusItem = false
+            node.focus()
         }
 
         if(document.activeElement.className !== "item-title") {
@@ -34,7 +35,7 @@
         spellcheck="false"
     />
     <div class="more-wrapper">
-        <ItemOptions bind:groups {iGroup} {id} />
+        <ItemOptions bind:groups {iGroup} {id} {iItem} on:renameItem={() => focusItem = true}/>
     </div>
 </div>
 

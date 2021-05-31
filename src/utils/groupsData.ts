@@ -30,7 +30,7 @@ export const groupsData = [
     },
 ] 
 
-const generateId = () => {
+export const generateId = () => {
     let id = 1
 
     function checkId() {

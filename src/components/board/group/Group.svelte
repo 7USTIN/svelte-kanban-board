@@ -16,7 +16,7 @@
     <Header bind:groups bind:focusHeader {name} {iGroup} on:addedItem={() => focusItem = true}/>
 
     {#each items as {id, title, text}, iItem (iItem)}
-        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} />
+        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} />
     {/each}
     
     <AddItem bind:groups {iGroup} on:addedItem={() => focusItem = true}/>

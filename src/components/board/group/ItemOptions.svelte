@@ -1,19 +1,26 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
+    import { generateId } from "../../../utils/groupsData"
+
     export let groups: any[]
     export let iGroup: number
     export let id: number
-
+    export let iItem: number
+    
     let showMenu = false
+
+    const dispatch = createEventDispatcher()
 
     const clickMenu = () => showMenu = !showMenu
 
     const renameItem = () => {
-
+        dispatch("renameItem")
+        clickMenu()
     }
 
     const copyItem = () => {
         let gItems = groups[iGroup].items
-        groups[iGroup].items.splice(gItems.indexOf(gItems.find(item => item.id === id)), 0, gItems.find(item => item.id === id))
+        groups[iGroup].items.splice(iItem, 0, { id: generateId(), title: gItems[iItem].title, text: gItems[iItem].text })
         groups = groups
         clickMenu()
     }
