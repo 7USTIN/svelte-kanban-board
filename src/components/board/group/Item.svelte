@@ -46,7 +46,6 @@
         box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
         border-radius: 3px;
         background: white;
-        overflow: hidden;
         user-select: none;
         min-height: 40px;
         cursor: pointer;
@@ -89,6 +88,11 @@
             top: 8px;
             right: 8px;
             transition: 200ms;
+
+            @media screen and (max-width: 800px) {
+                opacity: 1;
+                visibility: visible;
+            }
         }
     }
 </style>
