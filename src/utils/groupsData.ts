@@ -30,13 +30,13 @@ export const groupsData = [
     },
 ] 
 
-export const generateId = () => {
+export const generateId = (arr: any[]) => {
     let id = 1
 
     function checkId() {
-        for(let i in groupsData) {
-            for(let j in groupsData[i].items) {
-                if(groupsData[i].items[j].id === id) {
+        for(let i in arr) {
+            for(let j in arr[i].items) {
+                if(arr[i].items[j].id === id) {
                     id++
                     checkId()
                 }
@@ -52,6 +52,6 @@ export const addItem = (arr: any, index: number) => {
     window.getSelection().removeAllRanges()
     return arr[index].items = [
         ...arr[index].items, 
-        {id: generateId(), title: "", text: ""}
+        {id: generateId(arr), title: "", text: ""}
     ]
 }

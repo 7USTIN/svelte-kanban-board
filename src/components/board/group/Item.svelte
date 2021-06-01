@@ -7,20 +7,20 @@
     export let iItem: number
     export let groups: any[]
     export let iGroup: number
-    export let focusItem: boolean
+    export let focusItem: {focus: boolean, id: number}
+    export let handleRenameItem: (e) => void
 
     let unfocusable = false
+    let inputEl: HTMLElement
 
-    const focusEl = node => {
-        if(focusItem) {
-            unfocusable = false
-            focusItem = false
-            node.focus()
-        }
+    $: if(focusItem.focus && inputEl && focusItem.id === id) {
+        inputEl.focus()
+        document.execCommand('selectAll', false, null);
+        focusItem.focus = false
+    }
 
-        if(document.activeElement.className !== "item-title") {
-            unfocusable = true
-        }
+    $: if(document.activeElement.className !== "item-title") {
+        unfocusable = true
     }
 </script>
 
@@ -29,13 +29,13 @@
         class="item-title"
         class:unfocusable
         contenteditable="true"
+        bind:this={inputEl}
         bind:innerHTML={title}
-        use:focusEl
         placeholder="Untitled"
         spellcheck="false"
     />
     <div class="more-wrapper">
-        <ItemOptions bind:groups {iGroup} {id} {iItem} on:renameItem={() => focusItem = true}/>
+        <ItemOptions bind:groups {iGroup} {id} {iItem} on:renameItem={handleRenameItem}/>
     </div>
 </div>
 

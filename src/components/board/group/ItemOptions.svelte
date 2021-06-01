@@ -14,13 +14,13 @@
     const clickMenu = () => showMenu = !showMenu
 
     const renameItem = () => {
-        dispatch("renameItem")
+        dispatch("renameItem", { id: id })
         clickMenu()
     }
 
     const copyItem = () => {
         let gItems = groups[iGroup].items
-        groups[iGroup].items.splice(iItem, 0, { id: generateId(), title: gItems[iItem].title, text: gItems[iItem].text })
+        gItems.splice(iItem + 1, 0, { id: generateId(groups), title: gItems[iItem].title, text: gItems[iItem].text })
         groups = groups
         clickMenu()
     }

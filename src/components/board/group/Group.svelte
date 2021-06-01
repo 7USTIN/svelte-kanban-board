@@ -9,17 +9,22 @@
     export let name: string
     export let items: any[]
 
-    let focusItem = false
+    let focusItem = {focus: false, id: undefined}
+
+    const handleRenameItem = e => {
+        focusItem.id = e.detail.id
+        focusItem.focus = true
+    }
 </script>
 
 <div class="group-wrapper">
-    <Header bind:groups bind:focusHeader {name} {iGroup} on:addedItem={() => focusItem = true}/>
+    <Header bind:groups bind:focusHeader {name} {iGroup} on:renameItem={handleRenameItem}/>
 
     {#each items as {id, title, text}, iItem (iItem)}
-        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} />
+        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} {handleRenameItem} />
     {/each}
     
-    <AddItem bind:groups {iGroup} on:addedItem={() => focusItem = true}/>
+    <AddItem bind:groups {iGroup} on:renameItem={handleRenameItem}/>
 </div>
 
 <style lang="scss">

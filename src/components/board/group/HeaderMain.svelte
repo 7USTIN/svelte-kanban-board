@@ -8,7 +8,7 @@
     const focusEl = (node: HTMLElement) => {
         if(focusHeader && iGroup + 1 === groups.length) {
             node.focus()
-            document.execCommand('selectAll', false, null);
+            document.execCommand('selectAll', false, null)
             focusHeader = false
         }
     }

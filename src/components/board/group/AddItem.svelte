@@ -9,7 +9,7 @@
 
     const handleClick = () => {
         groups[iGroup].items = addItem(groups, iGroup)
-        disptach("addedItem")
+        disptach("renameItem", {id: groups[iGroup].items[groups[iGroup].items.length - 1].id})
     }
 </script>
 

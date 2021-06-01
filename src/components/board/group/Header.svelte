@@ -17,7 +17,7 @@
     </div>
 
     <div class="sub-wrapper">
-        <HeaderOptions bind:groups bind:groupColor {iGroup} on:addedItem />
+        <HeaderOptions bind:groups bind:groupColor {iGroup} on:renameItem />
     </div>
 </div>
 
