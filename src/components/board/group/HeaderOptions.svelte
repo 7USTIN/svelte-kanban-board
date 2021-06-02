@@ -43,6 +43,11 @@
                             <span class="border" style={`border: 1px solid #${hex};`}/> 
                         </span> 
                         {name}
+                        {#if hex === groupColor}
+                            <svg class="check" viewBox="0 0 14 14">
+                                <polygon points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"></polygon>
+                            </svg>
+                        {/if}
                     </p>
                 {/each}
             </div>
@@ -140,12 +145,20 @@
                     margin: 0 3px 0 14px;
                 }
 
+                .check {
+                    width: 14px;
+                    height: 14px;
+                    fill: rgb(55, 53, 47);
+                    margin: 0 14px 0 auto;
+                }
+
                 .color {
                     width: 18px;
                     height: 18px;
                     margin: 0 8px 0 14px;
                     border-radius: 3px;
                     position: relative;
+                }
 
                 .border {
                     position: absolute;
@@ -159,7 +172,6 @@
                     background: transparent;
                     filter: brightness(80%);
                     z-index: 600;
-                }
                 }
             }
         }
