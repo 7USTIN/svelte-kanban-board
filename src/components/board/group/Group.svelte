@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { flip } from 'svelte/animate';
+	import { dndzone } from 'svelte-dnd-action';
     import Header from "./Header.svelte"
     import AddItem from "./AddItem.svelte"
     import Item from "./Item.svelte"
@@ -10,19 +12,28 @@
     export let items: any[]
 
     let focusItem = {focus: false, id: undefined}
-
+    
     const handleRenameItem = e => {
         focusItem.id = e.detail.id
         focusItem.focus = true
     }
+    
+    const flipDurationMs = 200
+    const dropTargetStyle = {outline: 'rgba(55, 53, 47, .08) solid 2px'}
+
+    const handleDnd = e => items = e.detail.items
 </script>
 
 <div class="group-wrapper">
     <Header bind:groups bind:focusHeader {name} {iGroup} on:renameItem={handleRenameItem}/>
 
-    {#each items as {id, title, text}, iItem (iItem)}
-        <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} {handleRenameItem} />
-    {/each}
+    <div use:dndzone={{items, flipDurationMs, dropTargetStyle}} on:consider={handleDnd} on:finalize={handleDnd}>
+        {#each items as {id, title, text}, iItem (id)}
+            <div animate:flip={{duration: flipDurationMs}}>
+                <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} {handleRenameItem} />
+            </div>
+        {/each}
+    </div>
     
     <AddItem bind:groups {iGroup} on:renameItem={handleRenameItem}/>
 </div>

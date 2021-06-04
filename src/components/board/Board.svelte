@@ -9,7 +9,7 @@
 
 <section>
     {#each groups as {name, items}, iGroup (iGroup)}
-        <Group bind:groups bind:focusHeader {name} {items} {iGroup} />
+        <Group bind:groups bind:focusHeader bind:items {name} {iGroup} />
     {/each}
 
     <AddGroup bind:groups on:addedGroup={() => focusHeader = true} />

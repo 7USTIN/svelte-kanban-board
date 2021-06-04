@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import { generateId } from "../../../utils/groupsData"
+    import { fade } from "svelte/transition" 
 
     export let groups: any[]
     export let iGroup: number
@@ -41,7 +42,7 @@
     <div class="more-menu-wrapper">
         <div class="invisible" on:click={clickMenu}/>
 
-        <div class="more-menu">
+        <div class="more-menu" transition:fade={{ duration: 50 }}>
             <p on:click={renameItem}><i class="material-icons">drive_file_rename_outline</i>Rename</p>
             <p on:click={copyItem}><i class="material-icons">content_copy</i>Duplicate</p>
             <p on:click={deleteItem}><i class="material-icons">delete_outline</i>Delete</p>

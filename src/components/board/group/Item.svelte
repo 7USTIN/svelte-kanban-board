@@ -11,6 +11,7 @@
     export let handleRenameItem: (e) => void
 
     let unfocusable = false
+    let isDragged = false
     let inputEl: HTMLElement
 
     $: if(focusItem.focus && inputEl && focusItem.id === id) {
@@ -24,7 +25,7 @@
     }
 </script>
 
-<div class="item-wrapper">
+<div class="item-wrapper" class:isDragged on:mousedown={() => isDragged = true} on:mouseup={() => isDragged = false}>
     <div 
         class="item-title"
         class:unfocusable
@@ -40,6 +41,13 @@
 </div>
 
 <style lang="scss">
+    .isDragged {
+        cursor: move !important; /* fallback */
+        cursor: grabbing !important;
+        cursor: -moz-grabbing !important;
+        cursor: -webkit-grabbing !important;
+    }
+
     .item-wrapper {
         margin-bottom: 8px;
         padding: 8px 10px 10px;
