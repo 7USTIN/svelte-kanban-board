@@ -1,5 +1,6 @@
 <script lang="ts">
     import ItemOptions from "./ItemOptions.svelte"
+    import ItemModal from "./ItemModal.svelte"
 
     export let title: string
     export let text: string
@@ -9,10 +10,14 @@
     export let iGroup: number
     export let focusItem: {focus: boolean, id: number}
     export let handleRenameItem: (e) => void
-
+    export let dragDisabled: boolean
+    
     let unfocusable = false
     let isDragged = false
+    let showModal = false
     let inputEl: HTMLElement
+
+    $: dragDisabled = showModal
 
     $: if(focusItem.focus && inputEl && focusItem.id === id) {
         inputEl.focus()
@@ -25,7 +30,17 @@
     }
 </script>
 
-<div class="item-wrapper" class:isDragged on:mousedown={() => isDragged = true} on:mouseup={() => isDragged = false}>
+{#if showModal}
+    <ItemModal bind:showModal />
+{/if}
+
+<div 
+    class="item-wrapper"
+    class:isDragged 
+    on:click={() => showModal = true} 
+    on:mousedown={() => isDragged = true} 
+    on:mouseup={() => isDragged = false}
+>
     <div 
         class="item-title"
         class:unfocusable

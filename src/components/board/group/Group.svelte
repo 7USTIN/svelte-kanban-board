@@ -12,6 +12,7 @@
     export let items: any[]
 
     let focusItem = {focus: false, id: undefined}
+    let dragDisabled = false
     
     const handleRenameItem = e => {
         focusItem.id = e.detail.id
@@ -19,7 +20,7 @@
     }
     
     const flipDurationMs = 200
-    const dropTargetStyle = {outline: 'rgba(55, 53, 47, .08) solid 2px'}
+    const dropTargetStyle = {outline: "transparent solid 0px"}
 
     const handleDnd = e => items = e.detail.items
 </script>
@@ -27,10 +28,10 @@
 <div class="group-wrapper">
     <Header bind:groups bind:focusHeader {name} {iGroup} on:renameItem={handleRenameItem}/>
 
-    <div use:dndzone={{items, flipDurationMs, dropTargetStyle}} on:consider={handleDnd} on:finalize={handleDnd}>
+    <div use:dndzone={{items, flipDurationMs, dropTargetStyle, dragDisabled}} on:consider={handleDnd} on:finalize={handleDnd}>
         {#each items as {id, title, text}, iItem (id)}
             <div animate:flip={{duration: flipDurationMs}}>
-                <Item bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} {handleRenameItem} />
+                <Item bind:dragDisabled bind:title bind:text bind:groups bind:focusItem {iGroup} {id} {iItem} {handleRenameItem} />
             </div>
         {/each}
     </div>
