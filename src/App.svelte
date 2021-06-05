@@ -35,4 +35,21 @@
 		width: fit-content;
 		min-width: 95vw;
 	}
+
+	:global(::-webkit-scrollbar) {
+        background: transparent;
+    }
+
+    :global(::-webkit-scrollbar) {
+        width: 10px;
+        height: 10px;
+    }
+
+    :global(::-webkit-scrollbar-thumb) {
+        background: #D3D1CB;
+    }
+
+    :global(::-webkit-scrollbar-track) {
+        background: #EDECE9;
+    }
 </style>
