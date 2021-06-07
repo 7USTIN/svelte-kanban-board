@@ -37,7 +37,7 @@
 <div 
     class="item-wrapper"
     class:isDragged 
-    on:click={() => showModal = true} 
+    on:click|self={() => showModal = true} 
     on:mousedown={() => isDragged = true} 
     on:mouseup={() => isDragged = false}
 >

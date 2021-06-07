@@ -1,12 +1,13 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte"
+    import { randomColor } from "../../utils/colors"
 
     export let groups: any[]
 
     const dispatch = createEventDispatcher()
 
     const addGroup = () => {
-        groups = [...groups, {name: `Group ${groups.length + 1}`, items: []}]
+        groups = [...groups, {name: `Group ${groups.length + 1}`, color: randomColor(), items: []}]
         dispatch("addedGroup")
     }
 </script>

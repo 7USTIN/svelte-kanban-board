@@ -6,7 +6,6 @@
 
     export let groups: any[]
     export let iGroup: number
-    export let groupColor: string
 
     const dispatch = createEventDispatcher()
 
@@ -38,12 +37,12 @@
                 
                 <div class="sub-header">Colors</div>
                 {#each colors as {name, hex}}
-                    <p on:click={() => { groupColor = hex; showMenu = false }}>
+                    <p on:click={() => { groups[iGroup].color = hex; showMenu = false }}>
                         <span class="color" style={`background: #${hex};`}>
                             <span class="border" style={`border: 1px solid #${hex};`}/> 
                         </span> 
                         {name}
-                        {#if hex === groupColor}
+                        {#if hex === groups[iGroup].color}
                             <svg class="check" viewBox="0 0 14 14">
                                 <polygon points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"></polygon>
                             </svg>
