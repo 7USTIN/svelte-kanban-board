@@ -3,6 +3,7 @@
     export let title: string
     export let groups: any[]
     export let iGroup: number
+    export let iItem: number
 
     let titleEl: HTMLElement
     let showGroupsList = false
@@ -22,6 +23,12 @@
 
     const closeGroupsList = () => showGroupsList = false
     const openGroupsList = () => showGroupsList = true
+
+    const changeGroup = (idx: number) => {
+        let item = groups[iGroup].items.splice(iItem, 1)
+        groups[idx].items = [...item, ...groups[idx].items]
+        groups = groups
+    }
 </script>
 
 <section on:click|self={closeModal}>
@@ -60,7 +67,7 @@
                             <div class="groups-list">
                                 <p>Select an option</p>
                                 {#each groups as { name }, iList (iList)}
-                                    <div class="name-wrapper">
+                                    <div class="name-wrapper" on:click={() => changeGroup(iList)}>
                                         <div class="name" style={`background: #${groups[iList].color}`}>{name}</div>
                                     </div>
                                 {/each}
@@ -80,6 +87,8 @@
         height: 100vh;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         background: rgba(0, 0, 0, 0.4);
         cursor: pointer !important;
         z-index: 999;
@@ -96,9 +105,17 @@
             top: 72px;
             left: 72px;
             right: 72px;
+            bottom: 72px;
             height: calc(100% - 144px);
             overflow: auto;
             cursor: default;
+
+            @media screen and (max-width: 425px) {
+                top: 24px;
+                left: 24px;
+                right: 24px;
+                bottom: 24px;
+            }
 
             .close {
                 position: relative;
