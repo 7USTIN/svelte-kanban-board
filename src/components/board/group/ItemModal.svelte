@@ -1,8 +1,11 @@
 <script lang="ts">
     export let showModal: boolean
     export let title: string
+    export let groups: any[]
+    export let iGroup: number
 
     let titleEl: HTMLElement
+    let showGroupsList = false
 
     const closeModal = () => showModal = false
 
@@ -16,6 +19,9 @@
         }
         titleEl.focus()
     }
+
+    const closeGroupsList = () => showGroupsList = false
+    const openGroupsList = () => showGroupsList = true
 </script>
 
 <section on:click|self={closeModal}>
@@ -33,10 +39,34 @@
                 placeholder="Untitled"
                 spellcheck="false"
             />
+
             <div class="property-wrapper">
                 <div class="property-name">
                     <i class="material-icons">subject</i>
                     <div>Group</div>
+                </div>
+
+                <div 
+                    class="property-groups" 
+                    style={showGroupsList && "background: rgba(242, 241, 238, 0.6);"}
+                    on:click|self={openGroupsList}
+                >
+                    <div class="groups-name" style={`background: #${groups[iGroup].color}`} on:click={openGroupsList}>
+                        {groups[iGroup].name}
+                    </div>
+                    {#if showGroupsList}
+                        <div class="invisible" on:click={closeGroupsList} />
+                        <div class="groups-list-wrapper" on:click|self={closeGroupsList}>
+                            <div class="groups-list">
+                                <p>Select an option</p>
+                                {#each groups as { name }, iList (iList)}
+                                    <div class="name-wrapper">
+                                        <div class="name" style={`background: #${groups[iList].color}`}>{name}</div>
+                                    </div>
+                                {/each}
+                            </div>
+                        </div>
+                     {/if}
                 </div>
             </div>
         </div>
@@ -133,15 +163,115 @@
                         color: rgba(55, 53, 47, 0.6);
                         user-select: none;
                         border-radius: 3px;
-                        padding: 0px 6px;
+                        margin: 0px 6px;
                         font-size: 15px;
 
                         i {
                             padding-right: 8px;
                         }
+                    }
+
+                    .property-groups {
+                        position: relative;
+                        user-select: none;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 3px;
+                        width: 100%;
+                        min-height: 34px;
+                        padding: 0px 8px;
 
                         &:hover {
                             background: rgba(55, 53, 47, 0.08);
+                        }
+    
+                        .groups-name {
+                            border-radius: 3px;
+                            height: 20px;
+                            padding: 0 6px;
+                            font-size: 15px;
+                            color: #37352f;
+                            text-align: left;
+                            line-height: 120%;
+                            z-index: 1000;
+                        }
+
+                        .invisible {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            z-index: 100;
+                            width: 100vw;
+                            height: 100vw;
+                            background: transparent;
+                            cursor: initial;
+                        }
+
+                        .groups-list-wrapper {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: auto;
+                            min-height: 34px;
+                            max-height: 70vh;
+                            border-top-left-radius: 3px;
+                            border-top-right-radius: 3px;
+                            box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+                            z-index: 1100;
+                            cursor: pointer;
+
+                            .groups-list {
+                                background: white;
+                                position: absolute;
+                                top: 34px;
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+                                padding: 6px 0;
+                                border-bottom-left-radius: 3px;
+                                border-bottom-right-radius: 3px;
+                            
+                                p {
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    padding:  6px 14px 8px;
+                                    color: rgba(55, 53, 47, 0.6);
+                                    font-size: 13px;
+                                    font-weight: 600;
+                                    line-height: 120%;
+                                    user-select: none;
+                                    cursor: initial;
+                                }
+
+                                .name-wrapper {
+                                    cursor: pointer;
+                                    width: 100%;
+                                    min-height: 30px;
+                                    line-height: 120%;
+                                    display: flex;
+                                    align-items: center;
+
+                                    &:hover {
+                                        background: rgba(55, 53, 47, 0.1)
+                                    }
+
+                                    .name {
+                                        width: fit-content;
+                                        border-radius: 3px;
+                                        height: 20px;
+                                        padding: 0 6px;
+                                        font-size: 15px;
+                                        color: #37352f;
+                                        text-align: left;
+                                        line-height: 120%;
+                                        margin: 0 14px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
