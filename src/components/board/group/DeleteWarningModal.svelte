@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { scale, fade } from "svelte/transition"
+
     export let groups: any[]
     export let iGroup: number
     export let showDeleteWarning: boolean
@@ -12,8 +14,8 @@
     const closeWarning = () => showDeleteWarning = false
 </script>
 
-<section on:click|self={closeWarning}>
-    <div>
+<section on:click|self={closeWarning} transition:fade={{duration: 150}}>
+    <div in:scale={{duration: 150}}>
         <p>Are you sure? All blocks inside this column will be deleted.</p>
         <button class="delete-btn" on:click={deleteGroup}>
             Delete

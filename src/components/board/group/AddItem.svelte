@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { addItem } from "../../../utils/groupsData"
+    import { generateId } from "../../../utils/groupsData"
     import { createEventDispatcher } from "svelte"
 
     export let groups: any[]
@@ -7,13 +7,17 @@
     
     const disptach = createEventDispatcher()
 
-    const handleClick = () => {
-        groups[iGroup].items = addItem(groups, iGroup)
+    const addItem = () => {
+        window.getSelection().removeAllRanges()
+        groups[iGroup].items = [
+            ...groups[iGroup].items, 
+            { id: generateId(groups), title: "", text: "" }
+        ]
         disptach("renameItem", {id: groups[iGroup].items[groups[iGroup].items.length - 1].id})
     }
 </script>
 
-<button on:click={handleClick}>
+<button on:click={addItem}>
     <i class="material-icons">add</i> 
     New
 </button>

@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import { colors } from "../../../utils/colors"
     import { fade } from "svelte/transition" 
-    import { addItem } from "../../../utils/groupsData" 
+    import { generateId } from "../../../utils/groupsData"
     import DeleteWarningModal from "./DeleteWarningModal.svelte";
 
     export let groups: any[]
@@ -19,8 +19,12 @@
     }
 
     const addGroupItem = () => {
-        groups[iGroup].items = addItem(groups, iGroup)
-        dispatch("renameItem", {id: groups[iGroup].items[groups[iGroup].items.length - 1].id})
+        window.getSelection().removeAllRanges()
+        groups[iGroup].items = [
+            { id: generateId(groups), title: "", text: "" },
+            ...groups[iGroup].items
+        ]
+        dispatch("renameItem", {id: groups[iGroup].items[0].id})
     }
 </script>
 
