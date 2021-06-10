@@ -204,10 +204,16 @@
                         white-space: pre-wrap;
                         word-break: break-word;
                         margin-bottom: 24px;
+                        font-size: 15px;
 
                         &:empty::before {
                             content: attr(placeholder);
                             color: rgba(55, 53, 47, 0.45);
+                        }
+
+                        &:focus {
+                            background: rgba(55, 53, 47, 0.08);
+                            cursor: text;
                         }
                     }
 

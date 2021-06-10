@@ -3,6 +3,7 @@
     import { colors } from "../../../utils/colors"
     import { fade } from "svelte/transition" 
     import { addItem } from "../../../utils/groupsData" 
+    import DeleteWarningModal from "./DeleteWarningModal.svelte";
 
     export let groups: any[]
     export let iGroup: number
@@ -10,10 +11,10 @@
     const dispatch = createEventDispatcher()
 
     let showMenu = false
+    let showDeleteWarning = false
 
     const deleteGroup = () => {
-        groups.splice(iGroup, 1)
-        groups = groups
+        showDeleteWarning = true
         showMenu = false
     }
 
@@ -22,6 +23,10 @@
         dispatch("renameItem", {id: groups[iGroup].items[groups[iGroup].items.length - 1].id})
     }
 </script>
+
+{#if showDeleteWarning}
+    <DeleteWarningModal bind:groups bind:showDeleteWarning {iGroup} />
+{/if}
 
 <div class="more-wrapper">
     <i on:click={() => showMenu = !showMenu} class="options material-icons">more_horiz</i>
