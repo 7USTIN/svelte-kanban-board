@@ -1,6 +1,7 @@
 <script lang="ts">
     export let showModal: boolean
     export let title: string
+    export let text: string
     export let groups: any[]
     export let iGroup: number
     export let iItem: number
@@ -49,7 +50,7 @@
 
             <div class="property-wrapper">
                 <div class="property-name">
-                    <i class="material-icons">subject</i>
+                    <i class="material-icons">arrow_drop_down_circle</i>
                     <div>Group</div>
                 </div>
 
@@ -75,6 +76,15 @@
                         </div>
                      {/if}
                 </div>
+            </div>
+
+            <div class="property-wrapper">
+                <div class="property-name">
+                    <i class="material-icons">notes</i>
+                    <div>Description</div>
+                </div>
+
+                <div bind:innerHTML={text} contenteditable="true" class="property-input" placeholder="Empty" spellcheck="false" />
             </div>
         </div>
     </div>
@@ -123,6 +133,7 @@
                 top: 0;
                 right: 0;
                 height: 45px;
+                min-height: 45px;
                 display: flex;
                 align-items: center;
 
@@ -185,10 +196,22 @@
 
                         i {
                             padding-right: 8px;
+                            font-size: 21px;
                         }
                     }
 
-                    .property-groups {
+                    .property-input {
+                        white-space: pre-wrap;
+                        word-break: break-word;
+                        margin-bottom: 24px;
+
+                        &:empty::before {
+                            content: attr(placeholder);
+                            color: rgba(55, 53, 47, 0.45);
+                        }
+                    }
+
+                    .property-groups, .property-input {
                         position: relative;
                         user-select: none;
                         cursor: pointer;
@@ -196,8 +219,7 @@
                         align-items: center;
                         border-radius: 3px;
                         width: 100%;
-                        min-height: 34px;
-                        padding: 0px 8px;
+                        padding: 6px 8px;
 
                         &:hover {
                             background: rgba(55, 53, 47, 0.08);

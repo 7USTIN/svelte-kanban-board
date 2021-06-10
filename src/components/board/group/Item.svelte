@@ -31,7 +31,7 @@
 </script>
 
 {#if showModal}
-    <ItemModal bind:title bind:showModal bind:groups {iGroup} {iItem}/>
+    <ItemModal bind:text bind:title bind:showModal bind:groups {iGroup} {iItem}/>
 {/if}
 
 <div 
