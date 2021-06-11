@@ -1,6 +1,6 @@
 export const groupsData = [
     {
-        name: "Group 1",
+        name: "Not started",
         color: "f9d8d6",
         items: [
             { id: 1, title: "Item 1", text: "Text 1"},
@@ -11,7 +11,7 @@ export const groupsData = [
         ]
     },
     {
-        name: "Group 2",
+        name: "In progress",
         color: "f9f2d6",
         items: [
             { id: 6, title: "Item 6", text: "Text 6"},
@@ -24,7 +24,7 @@ export const groupsData = [
         ]
     },
     {
-        name: "Group 3",
+        name: "Completed",
         color: "daf9d6",
         items: [
             { id: 13, title: "Item 13", text: "Text 13"},
